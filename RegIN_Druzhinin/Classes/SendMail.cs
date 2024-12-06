@@ -23,12 +23,12 @@ namespace RegIN_Druzhinin.Classes
                 // Указываем порт по которому передаём сообщение
                 Port = 587,
                 // Указываем почту, с которой будет отправляться сообщение,и пароль от этой почты
-                Credentials = new NetworkCredential("yandex@yandex.ru", "password"),
+                Credentials = new NetworkCredential("zhmyshenckoal@yandex.ru", "kjedrpclifubhjod"),
                 // Включаем поддержку SSL
                 EnableSsl = true,
             };
             // Вызываем метод send, который отправляет письмо на указанный адресс
-            smtpClient.Send("zhmyshenckoal@yandex.ru", To, "Проект RegIn", Message);
+            smtpClient.Send("filippin.Alexander@yandex.ru", To, "Проект RegIn", Message);
         }
     }
 }
