@@ -18,7 +18,8 @@ namespace RegIN_Druzhinin.Classes
                 Credentials = new NetworkCredential("zhmyshenckoal@yandex.ru", "kjedrpclifubhjod"),
                 EnableSsl = true,
             };
-            smptClient.Send("filippin.Alexander@yandex.ru", To, "Проект RegIn", Message);
+            smptClient.Send("zhmyshenckoal@yandex.ru", to, "Проект RegIn", message);
         }
     }
 }
+    

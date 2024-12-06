@@ -21,6 +21,7 @@ namespace RegIN_Druzhinin.Classes
         public InCorrectLogin HandlerInCorrectLogin;
         public delegate void CorrectLogin();
         public delegate void InCorrectLogin();
+
         public void GetUserLogin(string Login)
         {
             this.Id = -1;
@@ -28,7 +29,7 @@ namespace RegIN_Druzhinin.Classes
             this.Password = String.Empty;
             this.Name = String.Empty;
             this.Image = new byte[0];
-            this.PinCode = String.Empty
+            this.PinCode = String.Empty;
 
             MySqlConnection connection = WorkingDB.OpenConnection();
             if (WorkingDB.OpenConnection(connection))
@@ -56,6 +57,7 @@ namespace RegIN_Druzhinin.Classes
             else HandlerInCorrectLogin.Invoke();
             WorkingDB.CloseConnection(connection);
         }
+
         public void SetUser()
         {
             MySqlConnection connection = WorkingDB.OpenConnection();
@@ -69,9 +71,11 @@ namespace RegIN_Druzhinin.Classes
                 command.Parameters.AddWithValue("@DateUpdate", this.DateUpdate);
                 command.Parameters.AddWithValue("@DateCreate", this.DateCreate);
                 command.Parameters.AddWithValue("@PinCode", String.Empty);
+                command.ExecuteNonQuery();
             }
             WorkingDB.CloseConnection(connection);
         }
+
         public void CreateNewPassword()
         {
             if (Login != String.Empty)
@@ -83,6 +87,7 @@ namespace RegIN_Druzhinin.Classes
                 SendMail.SendMessage($"Your account password has been changed.\nNew password: {this.Password}", this.Login);
             }
         }
+
         public void AddPinCode(string PinCode)
         {
             if (Login != String.Empty)
@@ -92,6 +97,7 @@ namespace RegIN_Druzhinin.Classes
                 WorkingDB.CloseConnection(connection);
             }
         }
+
         public string GeneratePassword()
         {
             List<char> newPassword = new List<char>();

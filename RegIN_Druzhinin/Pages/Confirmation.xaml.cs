@@ -47,16 +47,23 @@ namespace RegIN_Druzhinin.Pages
 
         public void TimerSendMailCode()
         {
-            for (int i = 0; i < 60; i++)
+            try
             {
-                Dispatcher.Invoke(() => LTimer.Content = $"A second message can be sent after {60 - i} seconds");
-                Thread.Sleep(1000);
+                for (int i = 0; i < 60; i++)
+                {
+                    Dispatcher.Invoke(() => LTimer.Content = $"A second message can be sent after {60 - i} seconds");
+                    Thread.Sleep(1000);
+                }
+                Dispatcher.Invoke(() =>
+                {
+                    BSendMessage.IsEnabled = true;
+                    LTimer.Content = "";
+                });
             }
-            Dispatcher.Invoke(() =>
+            catch (Exception ex)
             {
-                BSendMessage.IsEnabled = true;
-                LTimer.Content = "";
-            });
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void SendMail(object sender, RoutedEventArgs e) => SendMailCode();

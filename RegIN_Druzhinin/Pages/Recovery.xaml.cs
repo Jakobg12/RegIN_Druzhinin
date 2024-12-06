@@ -178,7 +178,7 @@ namespace RegIN_Druzhinin.Pages
                     // Выводим сообщение о том что новый пароль будет отправлен на почту
                     SetNotification("An email has been sent to your email.", Brushes.Black);
                     // Вызываем функцию создания нового пароля
-                    MainWindow.mainWindow.UserLogIn.CrateNewPassword();
+                    MainWindow.mainWindow.UserLogIn.CreateNewPassword();
                 }
             }
         }

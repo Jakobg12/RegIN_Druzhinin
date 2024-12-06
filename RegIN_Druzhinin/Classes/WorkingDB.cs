@@ -11,7 +11,7 @@ namespace RegIN_Druzhinin.Classes
 {
     public class WorkingDB
     {
-        readonly static string connection = "Server=localhost;database=pr6;uid=root";
+        readonly static string connection = "Server=localhost;database=regin;uid=root;port=3306";
         public static MySqlConnection OpenConnection()
         {
             try
