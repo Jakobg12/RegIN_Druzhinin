@@ -31,7 +31,7 @@ Height="100"
 Margin="32"
 VerticalAlignment="Top"
 Width="100"
-Source="/RegIN;component/Images/ic-user.png"
+Source="/RegIn_Druzhinin;component/Images/ic-user.png"
 MouseDown="SelectImage">
                     <Image.Clip>
                         <EllipseGeometry

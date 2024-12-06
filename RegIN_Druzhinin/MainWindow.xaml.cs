@@ -23,13 +23,7 @@ namespace RegIN_Druzhinin
     /// </summary>
     public partial class MainWindow : Window
     {
-        /// <summary>
-        /// Переменная которая ссылается на окно MainWindow
-        /// </summary>
         public static MainWindow mainWindow;
-        /// <summary>
-        /// Авторизированный пользователь
-        /// </summary>
         public User UserLogIn = new User();
         public MainWindow()
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -180,6 +181,11 @@ namespace RegIN_Druzhinin.Pages
                     MainWindow.mainWindow.UserLogIn.CrateNewPassword();
                 }
             }
+        }
+        public void SetNotification(string Message, SolidColorBrush _Color)
+        {
+            LNameUser.Content = Message;
+            LNameUser.Foreground = _Color;
         }
         private void OpenLogin(object sender, MouseButtonEventArgs e)
         {

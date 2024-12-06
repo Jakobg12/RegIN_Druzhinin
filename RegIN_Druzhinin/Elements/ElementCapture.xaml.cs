@@ -93,9 +93,6 @@ namespace RegIN_Druzhinin.Elements
                 Capture.Children.Add(LBackground);
             }
         }
-        /// <summary>
-        /// Функция создания переднего плана капчи
-        /// </summary>
         void Background()
         {
             // Инициализируем рандом

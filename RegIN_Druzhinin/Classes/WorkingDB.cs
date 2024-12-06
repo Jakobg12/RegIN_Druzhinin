@@ -11,68 +11,31 @@ namespace RegIN_Druzhinin.Classes
 {
     public class WorkingDB
     {
-        /// <summary>
-        /// Строка подключения к базе данных, указывается сервер, порт подключения, база данных, имя пользователя, пароль пользователя
-        /// </summary>
-        readonly static string connection = "server=localhost;port=3306;database=regin;user=root;pwd=root;";
-        /// <summary>
-        /// Создание и открытие подключения
-        /// </summary>
-        /// <returns>Открытое подключение или null</returns>
+        readonly static string connection = "Server=localhost;database=pr6;uid=root";
         public static MySqlConnection OpenConnection()
         {
             try
             {
-                // Создаём подключение MySql
-                MySqlConnection mySqlConnection = new MySqlConnection(connection);
-                // Открываем подключение
-                mySqlConnection.Open();
-                // Возвращаем открытое подключение
-                return mySqlConnection;
+                MySqlConnection conn = new MySqlConnection(connection);
+                conn.Open();
+                return conn;
             }
-            catch (Exception exp)
+            catch (Exception ex)
             {
-                // В случае ошибки, выводим сообщение в Debug
-                Debug.WriteLine(exp.Message);
-                // Возвращаем нулевое значение
+                Debug.WriteLine(ex.Message);
                 return null;
             }
         }
-        /// <summary>
-        /// Функция выполнения SQL-запросов
-        /// </summary>
-        /// <param name="Sql">SQL-запрос</param>
-        /// <param name="mySqlConnection">Открытое подключение</param>
-        /// <returns></returns>
-        public static MySqlDataReader Query(string Sql, MySqlConnection mySqlConnection)
+        public static MySqlDataReader Query(string SQL, MySqlConnection connection)
         {
-            // Создаём команду для выполнения SQL-запроса
-            MySqlCommand mySqlCommand = new MySqlCommand(Sql, mySqlConnection);
-            // Возвращаем результат выполненной команды
-            return mySqlCommand.ExecuteReader();
+            MySqlCommand command = new MySqlCommand(SQL, connection);
+            return command.ExecuteReader();
         }
-        /// <summary>
-        /// Функция закрытия соединения с базой данных
-        /// </summary>
-        /// <param name="mySqlConnection">Открытое MySQL соединение</param>
-        public static void CloseConnection(MySqlConnection mySqlConnection)
+        public static void CloseConnection(MySqlConnection connection)
         {
-            // Закрываем подключение с базой данных
-            mySqlConnection.Close();
-            // Очищаем Pool соединения, для того чтобы оно окончательно закрылось, а не ушло в состояние Sleep
-            MySqlConnection.ClearPool(mySqlConnection);
+            connection.Close();
+            MySqlConnection.ClearPool(connection);
         }
-        /// <summary>
-        /// Функция проверки соединение на работоспособность
-        /// </summary>
-        /// <param name="mySqlConnection">MySQL соединение</param>
-        /// <returns>Статус работоспособности соединения</returns>
-        public static bool OpenConnection(MySqlConnection mySqlConnection)
-        {
-            // Проверяем если соединение не является нулевым
-            // И статус соединения Open
-            // В таком случае возвращается TRUE, в противоположном FALSE
-            return mySqlConnection != null && mySqlConnection.State == System.Data.ConnectionState.Open;
-        }
+        public static bool OpenConnection(MySqlConnection connection) => connection != null && connection.State == System.Data.ConnectionState.Open;
     }
 }
